@@ -29,17 +29,18 @@ function gotData(data){
         var name=users[k].Name;
         var qty=users[k].Quantity;
         var size=users[k].Size;
-
-        pushRows(name,address,district,contact,size,color,qty,delivery);
+        var date=users[k].Date;
+        pushRows(date,name,address,district,contact,size,color,qty,delivery);
 
     }
 }
 
-function pushRows(name,address,district,contact,size,color,qty,delivery){
+function pushRows(date,name,address,district,contact,size,color,qty,delivery){
 
     let row=`
         <tr>
-            <th scope="row">${name}</th>
+            <th scope="row">${date}</th>
+            <td>${name}</td>
             <td>${address}</td>
             <td>${district}</td>
             <td>${contact}</td>
