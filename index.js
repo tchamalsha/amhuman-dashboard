@@ -50,7 +50,45 @@ function pushRows(date,name,address,district,contact,size,color,qty,delivery){
             <td>${delivery}</td>
         </tr>   `
 
-    record.innerHTML+=row  
+    record.innerHTML+=row              
             
+}
+let qtaRecord=document.getElementById('qtaRecords');
+var qtaData=firebase.database().ref('Quatations');
+qtaData.on('value',gotQtaData);
+
+function gotQtaData(data1){
+    var quatations=data1.val();
+    var keys1=Object.keys(quatations);
+
+    for(var p=0;p<keys1.length;p++){
+        var q=keys1[p];
+        var date=quatations[q].Date;
+        var name=quatations[q].Name;
+        var email=quatations[q].Email;
+        var contact=quatations[q].Contact;
+        var product=quatations[q].Product;
+        var exptDate=quatations[q].ExpectedDate;
+        var qty=quatations[q].Qty;
+        pushQtaRows(date,name,email,contact,product,qty,exptDate);
+
+    }
+}
+function pushQtaRows(date,name,email,contact,product,qty,exptDate){
+
+    let row1=`
+        <tr>
+            <th scope="row">${date}</th>
+            <td>${name}</td>
+            <td>${product}</td>
+            <td>${email}</td>
+            <td>${contact}</td>
+            <td>${qty}</td>
+            <td>${exptDate}</td>
+            
+
+        </tr>   `
+
+    qtaRecords.innerHTML+=row1              
             
 }
